@@ -6,5 +6,5 @@ host = socket.gethostname()
 port = 10000
 
 s.connect((host, port))
-print(s.recv(1024).decode(encoding='utf-8'))
+print(s.recv(1024).decode(encoding="utf-8"))
 s.close()
