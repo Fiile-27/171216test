@@ -2,12 +2,11 @@ from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
 
 
-class PrpCrypt:  # 定义一个类
+class PrpCrypt:
     def __init__(self, key):
         self.key = key
         self.mode = AES.MODE_CBC
 
-    # 加密函数，如果text不是16的倍数【加密文本text必须为16的倍数！】，那就补足为16的倍数
     def encrypt(self, filename):
         cryptor = AES.new(self.key, self.mode, self.key)
         length = 16
@@ -22,7 +21,6 @@ class PrpCrypt:  # 定义一个类
         fp_encrypt.close()
         return filename + "_new"
 
-    # 解密后，去掉补足的空格用strip() 去掉
     def decrypt(self, filename):
         cryptor = AES.new(self.key, self.mode, self.key)
         fp = open(filename, "r")
@@ -34,4 +32,5 @@ class PrpCrypt:  # 定义一个类
 pc = PrpCrypt('abcdefghijklmnop')  # 自己设定的密钥
 e = pc.encrypt("tfte")
 d = pc.decrypt(e)
-print(e, d)
+print(e)
+print(d)
